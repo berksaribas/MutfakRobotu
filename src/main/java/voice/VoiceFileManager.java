@@ -43,4 +43,15 @@ public class VoiceFileManager {
     public String findMostSimilarSoundName(String soundName) {
         return FileUtils.findMostSimilar(audioDatabase, soundName);
     }
+
+    public List<String> getSoundsByIndex(int page) {
+        int offset = page * 20;
+        List<String> sounds = new ArrayList<>();
+
+        for(int i = offset; i < Math.min(offset + 20, audioDatabase.size()); i++) {
+            sounds.add(audioDatabase.get(i));
+        }
+
+        return sounds;
+    }
 }

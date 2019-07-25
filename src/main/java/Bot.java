@@ -17,6 +17,7 @@ public class Bot {
         commandExecuter.registerCommand(LeaveVoiceChannelCommand.class);
         commandExecuter.registerCommand(StopAudioCommand.class);
         commandExecuter.registerCommand(SaveAudioCommand.class);
+        commandExecuter.registerCommand(ListAudioCommand.class);
 
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .flatMap(event -> Mono.justOrEmpty(event.getMessage().getContent())
