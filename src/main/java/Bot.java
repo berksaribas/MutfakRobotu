@@ -4,10 +4,7 @@ import discord4j.core.DiscordClientBuilder;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import voice.JoinVoiceChannelCommand;
-import voice.LeaveVoiceChannelCommand;
-import voice.PlayAudioCommand;
-import voice.StopAudioCommand;
+import voice.*;
 
 public class Bot {
     public static void main(String[] args) {
@@ -19,6 +16,7 @@ public class Bot {
         commandExecuter.registerCommand(PlayAudioCommand.class);
         commandExecuter.registerCommand(LeaveVoiceChannelCommand.class);
         commandExecuter.registerCommand(StopAudioCommand.class);
+        commandExecuter.registerCommand(SaveAudioCommand.class);
 
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .flatMap(event -> Mono.justOrEmpty(event.getMessage().getContent())

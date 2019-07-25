@@ -23,12 +23,17 @@ public class VoiceFileManager {
 
         for (File file : listOfFiles) {
             if (file.isFile() && FileUtils.isPlayableAudioFile(file.getName())) {
-                String fileName = file.getName();
-                String playName = fileName.substring(0, fileName.lastIndexOf("."));
-                audioMap.put(playName, fileName);
-                audioDatabase.add(playName);
+                registerSoundFile(file.getName());
             }
         }
+    }
+
+    public String registerSoundFile(String fileName) {
+        String playName = fileName.substring(0, fileName.lastIndexOf("."));
+        audioMap.put(playName, fileName);
+        audioDatabase.add(playName);
+
+        return playName;
     }
 
     public String retrieveSound(String soundName) {

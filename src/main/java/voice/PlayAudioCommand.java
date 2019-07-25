@@ -19,15 +19,16 @@ public class PlayAudioCommand extends Command {
 
     @Override
     public Mono<Void> execute(MessageCreateEvent event) {
-        String soundName = event.getMessage().getContent().get().replace(getToken() + " ", "");
-        String soundLocation = VoiceManager.getInstance().getVoiceFileManager().retrieveSound(soundName);
+        return Mono.justOrEmpty(event.getMessage().getContent())
+                .doOnNext(content -> {
+                    String soundName = content.replace(getToken() + " ", "");
+                    String soundLocation = VoiceManager.getInstance().getVoiceFileManager().retrieveSound(soundName);
 
-        audioLoadHandler.setEvent(event);
-        audioLoadHandler.setSoundName(soundName);
+                    audioLoadHandler.setEvent(event);
+                    audioLoadHandler.setSoundName(soundName);
 
-        VoiceManager.getInstance().getPlayerManager().loadItem(soundLocation, audioLoadHandler);
-
-        return Mono.empty();
+                    VoiceManager.getInstance().getPlayerManager().loadItem(soundLocation, audioLoadHandler);
+                }).then();
     }
 
     public String getToken() {
