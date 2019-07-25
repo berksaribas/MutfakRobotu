@@ -9,7 +9,7 @@ import voice.PlayAudioCommand;
 import voice.StopAudioCommand;
 
 public class Bot {
-    public static final String token = "NDk4NDgwNDgyODg4MDU2ODQy.DpuWXw.S5xD2tPm_rep1eRwoJDw_hsPa3Q";
+    public static final String token = "NDk4NDgwNDgyODg4MDU2ODQy.XTmZpg.bahDz4EbY1gLOi3DkepcHj01mfc";
 
     public static void main(String[] args) {
         DiscordClient client = (new DiscordClientBuilder(token)).build();

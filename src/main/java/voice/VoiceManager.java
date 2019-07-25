@@ -13,14 +13,31 @@ public class VoiceManager {
     private AudioProvider audioProvider;
     private AudioPlayer audioPlayer;
     private VoiceConnection voiceConnection;
+    private VoiceFileManager voiceFileManager;
 
     private VoiceManager() {
         this.playerManager = new DefaultAudioPlayerManager();
         this.playerManager.getConfiguration().setFrameBufferFactory(com.sedmelluq.discord.lavaplayer.track.playback.NonAllocatingAudioFrameBuffer::new);
-        AudioSourceManagers.registerRemoteSources(this.playerManager);
+        //AudioSourceManagers.registerRemoteSources(this.playerManager);
         AudioSourceManagers.registerLocalSource(this.playerManager);
         this.audioPlayer = this.playerManager.createPlayer();
         this.audioProvider = new LavaplayerAudioProvider(this.audioPlayer);
+        this.voiceFileManager = new VoiceFileManager();
+    }
+
+    public void setVoiceConnection(VoiceConnection voiceConnection) {
+        this.voiceConnection = voiceConnection;
+    }
+
+    public void disconnectFromVoiceConnection() {
+        if (this.voiceConnection != null) {
+            this.voiceConnection.disconnect();
+            this.voiceConnection = null;
+        }
+    }
+
+    public VoiceFileManager getVoiceFileManager() {
+        return voiceFileManager;
     }
 
     public static VoiceManager getInstance() {
@@ -46,16 +63,4 @@ public class VoiceManager {
         return this.audioProvider;
     }
 
-
-    public void setVoiceConnection(VoiceConnection voiceConnection) {
-        this.voiceConnection = voiceConnection;
-    }
-
-
-    public void disconnectFromVoiceConnection() {
-        if (this.voiceConnection != null) {
-            this.voiceConnection.disconnect();
-            this.voiceConnection = null;
-        }
-    }
 }
