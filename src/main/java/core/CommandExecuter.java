@@ -1,6 +1,8 @@
 package core;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class CommandExecuter {
     private HashMap<String, Command> commandHashMap;
@@ -21,11 +23,8 @@ public class CommandExecuter {
         }
     }
 
-    public Command getCommandByPrefix(String prefix) {
-        return commandHashMap.getOrDefault(prefix, null);
+    public Set<Map.Entry<String, Command>> getCommandEntrySet() {
+        return commandHashMap.entrySet();
     }
 
-    public boolean isPrefixRegistered(String prefix) {
-        return commandHashMap.containsKey(prefix);
-    }
 }
