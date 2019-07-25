@@ -9,10 +9,8 @@ import voice.PlayAudioCommand;
 import voice.StopAudioCommand;
 
 public class Bot {
-    public static final String token = "NDk4NDgwNDgyODg4MDU2ODQy.XTmZpg.bahDz4EbY1gLOi3DkepcHj01mfc";
-
     public static void main(String[] args) {
-        DiscordClient client = (new DiscordClientBuilder(token)).build();
+        DiscordClient client = (new DiscordClientBuilder(Config.token)).build();
 
         CommandExecuter commandExecuter = new CommandExecuter();
 
