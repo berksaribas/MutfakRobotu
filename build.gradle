@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "com.github.johnrengelman.shadow" version "5.1.0"
 }
 
 group 'com.mutfak'
@@ -22,4 +23,10 @@ dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.25'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Bot'
+    }
 }
